@@ -17,7 +17,6 @@ def generate_signals(df):
     df["Signal"] = np.where(raw_signal > 0, 1,
                    np.where(raw_signal < 0, -1, 0))
 
-    # 🔥 NO-TRADE ZONE (reduces noise)
     df["Signal"] = np.where(abs(z) < 0.5, 0, df["Signal"])
 
     return df
