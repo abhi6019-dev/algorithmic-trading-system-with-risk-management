@@ -1,130 +1,67 @@
 # 📊 Algorithmic Trading System with Risk Management
 
-A modular algorithmic trading system built using Python that combines multiple trading strategies, risk management, and a backtesting engine to evaluate systematic trading performance on historical market data.
+## 🚀 Overview
+A quantitative trading system combining momentum and mean reversion strategies with risk management and backtesting.
 
 ---
 
-## 🚀 Project Overview
+## 📊 Real Backtest Results
 
-This project implements a quantitative trading framework inspired by real-world hedge fund systems. It focuses on:
+Total Return: 7.16  
+CAGR: 0.239  
+Sharpe: 2.45  
+Max Drawdown: -0.079  
+Volatility: 0.089  
 
-- Signal generation using multiple strategies  
-- Portfolio signal aggregation  
-- Risk management and drawdown control  
-- Backtesting using historical data (via yfinance)  
-- Performance evaluation using key financial metrics  
-
----
-
-## 🧠 Key Features
-
-### 📈 Trading Strategies
-- Momentum-based strategy (trend following)
-- Mean reversion strategy (z-score based)
-- Ensemble signal combination
-
-### ⚖️ Risk Management
-- Volatility-based position sizing
-- Drawdown monitoring
-- Exposure control framework
-
-### 🧪 Backtesting Engine
-- Historical simulation of strategy performance
-- Strategy returns computation
-- Equity curve generation
-
-### 📊 Performance Metrics
-- Sharpe Ratio
-- Maximum Drawdown
-- CAGR (Compound Annual Growth Rate)
+Total Trades: 257  
+Win Rate: 0.354  
+Avg Win: 0.037  
+Avg Loss: -0.024  
 
 ---
 
-## 🏗️ Project Structure
+## 🧠 Strategy
 
-```
-algorithmic-trading-system-with-risk-management/
-│
-├── data/
-├── strategies/
-├── backtest/
-├── portfolio/
-├── risk/
-├── metrics/
-├── main.py
-└── requirements.txt
-```
+- Momentum (Moving Average crossover)  
+- Mean Reversion (Z-score)  
+- Combined signal filtering  
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Risk Management
 
-```bash
-git clone https://github.com/abhi6019-dev/algorithmic-trading-system-with-risk-management
-cd algorithmic-trading-system-with-risk-management
-pip install -r requirements.txt
-```
-
----
-
-## 📦 Requirements
-
-```
-pandas
-numpy
-yfinance
-matplotlib
-```
+- Stop Loss  
+- Take Profit  
+- Trailing Stop  
+- Position sizing  
 
 ---
 
-## ▶️ How to Run
+## 📈 Charts
 
-```bash
-python main.py
-```
-
----
-
-## 📊 Output
-
-- Equity curve
-- Sharpe ratio
-- Max drawdown
-- CAGR
-- Strategy performance summary
+![Equity Curve](outputs/charts/equity_curve.png)  
+![Strategy vs Buy & Hold](outputs/charts/benchmark.png)
+![Draw Down](outputs/charts/drawdown.png)
 
 ---
 
-## 📉 Metrics
+## ▶️ Run
 
-Sharpe:
-Sharpe = (Rp - Rf) / sigma_p
-
-Max Drawdown:
-Drawdown = (Peak - Trough) / Peak
-
-CAGR:
-CAGR = (Ending / Beginning)^(1/n) - 1
+git clone https://github.com/abhi6019-dev/algorithmic-trading-system-with-risk-management  
+cd algorithmic-trading-system-with-risk-management  
+pip install -r requirements.txt  
+python main.py  
 
 ---
 
-## 🚀 Future Improvements
+## ⚠️ Notes
 
-- ML-based alpha models
-- Portfolio optimization
-- Transaction costs + slippage
-- Walk-forward validation
-- Live trading integration
-
----
-
-## ⚠️ Disclaimer
-
-Educational use only. Not financial advice.
+- Backtest only  
+- No full cost/slippage modeling  
+- Needs further validation  
 
 ---
 
 ## 👨‍💻 Author
 
-Abhi (abhi6019-dev)
+Abhi(abhi6019-dev)
