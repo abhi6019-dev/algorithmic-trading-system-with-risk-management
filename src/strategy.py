@@ -1,27 +1,23 @@
-import pandas as pd
 import numpy as np
 
 def generate_signals(df):
     df = df.copy()
 
-    # --- Initialize Signal ---
-    df["Signal"] = 0
+    # Momentum
+    momentum = np.where(df["MA_short"] > df["MA_long"], 1, -1)
 
-    # --- STRATEGY RULES ---
+    # Mean reversion
+    z = df["Z_score"]
+    mean_rev = np.where(z < -1.2, 1,
+               np.where(z > 1.2, -1, 0))
 
-    # Trend-following
-    trend_buy = (df["Trend"] == 1) & (df["Close"] > df["MA_20"] * 0.995)
-    trend_sell = (df["Trend"] == 1) & (df["Close"] < df["MA_20"] * 1.005)
+    # Combine
+    raw_signal = momentum + mean_rev
 
-    # Mean-reversion (RELAXED thresholds)
-    mr_buy = (df["Trend"] == 0) & (df["Z"] < -0.8)
-    mr_sell = (df["Trend"] == 0) & (df["Z"] > 0.8)
+    df["Signal"] = np.where(raw_signal > 0, 1,
+                   np.where(raw_signal < 0, -1, 0))
 
-    # Apply signals
-    df.loc[trend_buy | mr_buy, "Signal"] = 1
-    df.loc[trend_sell | mr_sell, "Signal"] = -1
-
-    # ⚠️ Prevent lookahead bias
-    df["Signal"] = df["Signal"].shift(1).fillna(0)
+    # 🔥 NO-TRADE ZONE (reduces noise)
+    df["Signal"] = np.where(abs(z) < 0.5, 0, df["Signal"])
 
     return df
